@@ -51,18 +51,25 @@
   <section class="container" >
   <div class="row">
     <div class="col-md-1 col-sm-2 col-3 mt-2 p-1" v-for="(item,index) in categories" :key="index">
-      <router-link class="category_thumnail" :to="{name: 'category', params: {slug: item.slug } }"><img  @error="imageLoadError" :src="baseurl+'/'+item.image" alt="" class="img-thumbnail"></router-link>
+      <router-link class="category_thumnail" :to="{name: 'category', params: {slug: item.slug } }"><img  @error="imageLoadError" :src="baseurl+'/'+item.image" alt="" class="img-thumbnail">
+        <p>{{item.title}}</p>
+      </router-link>
      </div>
   </div>
 </section>
 </span>
 <span v-else>
-  <div style="margin-top: 10px;" class="container">
-    <div class="row">
-      <div class="col-sm-12 col-lg-12 col-md-12 col-lg-12 pr-0">
-        <div class="shimmer"><div class="h_10"></div></div>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-1 col-md-1 mb-3"> <div class="shimmer"> <div class="h_10 w_100per"></div></div> </div>
+          <div class="col-md-1 col-md-1 mb-3"> <div class="shimmer"> <div class="h_10 w_100per"></div></div> </div>
+          <div class="col-md-1 col-md-1 mb-3"> <div class="shimmer"> <div class="h_10 w_100per"></div></div> </div>
+          <div class="col-md-1 col-md-1 mb-3"> <div class="shimmer"> <div class="h_10 w_100per"></div></div> </div>
+          <div class="col-md-1 col-md-1 mb-3"> <div class="shimmer"> <div class="h_10 w_100per"></div></div> </div>
+          <div class="col-md-1 col-md-1 mb-3"> <div class="shimmer"> <div class="h_10 w_100per"></div></div> </div>
+          <div class="col-md-1 col-md-1 mb-3"> <div class="shimmer"> <div class="h_10 w_100per"></div></div> </div>
+          <div class="col-md-1 col-md-1 mb-3"> <div class="shimmer"> <div class="h_10 w_100per"></div></div> </div>
       </div>
-    </div>
   </div>
 </span>
 

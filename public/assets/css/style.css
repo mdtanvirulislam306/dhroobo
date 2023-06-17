@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster+Two&family=Poiret+One&family=Roboto:wght@300&display=swap');
+@import url('https://fonts.maateen.me/adorsho-lipi/font.css');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
 body {
-font-family: 'Roboto', sans-serif;
-}
+    font-family: 'AdorshoLipi', 'Raleway', sans-serif !important;
+} 
 
 * {
     margin: 0;

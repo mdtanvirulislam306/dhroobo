@@ -124,6 +124,7 @@
 export default {
   data(){
     return{
+      navbars:'',
       userLoged:null,
       categories:[],
       cartItem:[],
@@ -146,7 +147,16 @@ export default {
        params: { content: content}
      });
    },
-
+   internalNavber(){
+         let axiosConfig = {
+            headers: {
+                'X-localization': localStorage.getItem('lang')
+            }
+            }
+            axios.get(this.$baseUrl+'/api/v1/get-navbars', axiosConfig).then(response => {
+                this.navbars = response.data
+            });
+       },
 
    newsletter(){
     let email = jQuery('#newsletter_email').val();
@@ -230,6 +240,7 @@ export default {
   mounted(){
     this.baseurl = this.$baseUrl;
     this.site_information();
+    this.internalNavber();
     // this.load_static_pages();
   },
 

@@ -73,7 +73,7 @@
 
 <section id="fullheader"> 
 <div class="header_main_logo">  <router-link :to="{name: 'home'}" class="sidebar_logo"> <img src="/images/logo.png" alt=""> </router-link></div> 
-<div class="bar_parent"><div class="bar_child"><i class="fa fa-bars" style="color:#fff !important;"></i> </div></div>
+<!-- <div class="bar_parent"><div class="bar_child"><i class="fa fa-bars" style="color:#fff !important;"></i> </div></div> -->
 <div class="container p-0">
    <div class="row mobile_header_menu">
       <div class="col-5 col-sm-5 col-md-5 p-0">
@@ -114,8 +114,19 @@
    </div>
    <div class="user_and_search_bar">
       <div class="row">
-         <div class="col-12 col-sm-12 col-md-1 col-lg-1 col-xl-1"></div>
-         <div class="col-md-7 col-lg-7 col-xl-7">
+         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <ul class="list-unstyled" style="">
+                                    <li v-for="(navbar, index) in navbars" :key="index" v-if="navbar.status == '1'" style="  float: left; padding: 15px 0 15px 0; margin: 10px;">
+                                        <span v-if="navbar.link_type == 'Internal'" >
+                                            <router-link :to="{name: navbar.link}">  {{ navbar.title }} </router-link>
+                                        </span>
+                                        <span v-else>
+                                            <a target="_blank" :href="navbar.link">{{ navbar.title }}</a>
+                                        </span>
+                                    </li>
+                                </ul>
+         </div>
+         <div class="col-md-5 col-lg-5 col-xl-5">
             <form @submit.prevent="searchSubmit()">
                <div class="row searchbox">
                   <div class="col-md-10 p-0">
@@ -166,7 +177,7 @@
          </div>
 
 
-         <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 text-right icon_group_wrapper">
+         <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 text-right icon_group_wrapper">
             <ul id="header_dynamic_option">
                <li class="header_dynamic_li first">
                   <div class="header_item header_location"> 
@@ -1492,6 +1503,7 @@
 
     </div>
 </template>
+
 <script>
    import Vue from 'vue';
    import Form from 'vform'
@@ -1502,7 +1514,7 @@ import jquery from '../../../../../../public/assets/js/jquery.js';
    export default {
      data(){
        return{
-         
+         navbars:'',
          static_pages:'',
          site_info:'',
          userLoged:null,
@@ -2031,7 +2043,16 @@ import jquery from '../../../../../../public/assets/js/jquery.js';
             
          });
        },
-   
+       internalNavber(){
+         let axiosConfig = {
+            headers: {
+                'X-localization': localStorage.getItem('lang')
+            }
+            }
+            axios.get(this.$baseUrl+'/api/v1/get-navbars', axiosConfig).then(response => {
+                this.navbars = response.data
+            });
+       },
       search_suggest(){
          $('.search_suggest_wrapper').show();
          let searchContent = $('.searchContent').val();
@@ -2453,6 +2474,7 @@ import jquery from '../../../../../../public/assets/js/jquery.js';
          $('body').addClass('bangla');
       }
       this.site_information();
+      this.internalNavber();
       //this.load_categories();
       this.baseurl = this.$baseUrl;
        this.load_promotional_offer_title();

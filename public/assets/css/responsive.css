@@ -4,7 +4,7 @@ a,
 p,
 span,
 h3 {
-    font-family: Roboto;
+    font-family: 'AdorshoLipi', Arial, sans-serif !important;
 }
 
 /* p {
@@ -31,7 +31,12 @@ a {
     }
 }
 
-
+@media(min-width: 768px){
+    .not_active{display: none;}
+    .full_flex{
+       margin: auto;
+    }
+}
 
 
 @media(max-width: 991px) {
